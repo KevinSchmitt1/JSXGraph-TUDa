@@ -1,0 +1,281 @@
+JSFIDDLE
+
+
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return ((Math.sin(4*x+((Math.PI*1.5)+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(0.5*Math.sin(4*x+((Math.PI*1.5)+s.Value()))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:false
+        }
+);
+
+board.unsuspendUpdate();
+
+JSFIDDLE Graph Feedback mit Wellen unterschiedlicher Amplitude:
+
+
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return (2*((Math.sin(4*x+((Math.PI*1.5))+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(Math.sin(4*x+(((Math.PI*1.5)+s.Value())))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:true
+        }
+);
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var p = board.createElement('point',[(5/8)*Math.PI, function(){return mittel.Y();}],{name:'P', strokeColor:'black', face:'x' });
+var q = board.createElement('glider',[1.96, 1, wres] , {name:'Q', strokeColor:'black', size:1, fixed:true});
+
+var vec = board.createElement('line',[p,q], {straightFirst:false, straightLast:false, lastArrow:true, strokeColor:'green'});
+board.unsuspendUpdate();
+
+JSFIDDLE unterschiedliche Frequenz:
+
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return (((Math.sin(2*x+((Math.PI*1.5))+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(0.5*Math.sin(2*x+(((Math.PI*1.5)+s.Value())))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:true
+        }
+);
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var p = board.createElement('point',[(5/8)*Math.PI, function(){return mittel.Y();}],{name:'P', strokeColor:'black', face:'x' });
+var q = board.createElement('glider',[3.14, 3, wres] , {name:'Q', strokeColor:'black', size:1, fixed:true});
+
+var vec = board.createElement('line',[p,q], {straightFirst:false, straightLast:false, lastArrow:true, strokeColor:'green'});
+board.unsuspendUpdate();
+
+
+
+
+
+Moodle Eingabe:
+Aufgabe 1)
+
+[[jsxgraph input-ref-ans1="stateRef"]]
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return ((Math.sin(4*x+((Math.PI*1.5)+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(0.5*Math.sin(4*x+((Math.PI*1.5)+s.Value()))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:false
+        }
+);
+stack_jxg.bind_slider(stateRef,s);
+board.unsuspendUpdate();
+[[/jsxgraph]]
+
+Graph Feedback 1:
+
+[[jsxgraph]] 
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false}); 
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], {strokeColor:'red', name:'Welle1' } ); 
+var s = board.createElement('slider', [ [2,4], [5,4], [0,0,Math.PI*4] ], { name:'S', snapWidth:Math.PI*0.25 } ); 
+var w2 = board.createElement('functiongraph',[function (x) { return ((Math.sin(4*x+((Math.PI*1.5)+s.Value()))*0.5)+1); }, -2,8], {strokeColor:'blue',name:'Welle 2' } ); 
+var wres = board.createElement('functiongraph', [function(x) { return((Math.sin(4*x)*0.5)+(0.5*Math.sin(4*x+((Math.PI*1.5)+s.Value()))+0.5) ); }, -2,8], { name:'Resultierende Welle', strokeColor:'green', visible:true } ); 
+board.unsuspendUpdate(); 
+[[/jsxgraph]]
+
+Graph Feedback mit Wellen unterschiedlicher Amplitude:
+
+[[jsxgraph]] 
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return (2*((Math.sin(4*x+((Math.PI*1.5))+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(Math.sin(4*x+(((Math.PI*1.5)+s.Value())))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:true
+        }
+);
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var p = board.createElement('point',[(5/8)*Math.PI, function(){return mittel.Y();}],{name:'P', strokeColor:'black', face:'x' });
+var q = board.createElement('glider',[1.96, 1, wres] , {name:'Q', strokeColor:'black', size:1, fixed:true});
+
+var vec = board.createElement('line',[p,q], {straightFirst:false, straightLast:false, lastArrow:true, strokeColor:'green'});
+board.unsuspendUpdate();
+[[/jsxgraph]] 
+
+Moodle unterschiedliche Frequenz:
+
+[[jsxgraph]] 
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-2, 5, 6, -5], axis:false, showCopyright:false});
+var w1 = board.createElement('functiongraph',[function (x) { return (Math.sin(4*x)*0.5); }, -2,8], 
+         {strokeColor:'red',
+         name:'Welle 1'
+         }
+);
+var s = board.createElement('slider', [
+      [2,4],
+      [5,4],
+      [0,0,Math.PI*4]
+      ],
+      {
+      name:'S',
+      snapWidth:Math.PI*0.25
+      }
+);
+
+var w2 = board.createElement('functiongraph',[function (x) { return (((Math.sin(2*x+((Math.PI*1.5))+s.Value()))*0.5)+1); }, -2,8], 
+         {strokeColor:'blue',
+         name:'Welle 2'
+         }
+);
+
+var wres = board.createElement('functiongraph',
+        [function(x) {
+          return((Math.sin(4*x)*0.5)+(0.5*Math.sin(2*x+(((Math.PI*1.5)+s.Value())))+0.5)
+          );
+        }, 
+        -2,8],
+        {
+        name:'Resultierende Welle',
+        strokeColor:'green',
+        visible:true
+        }
+);
+var mittel = board.createElement('functiongraph',[function(x) {return 0.5}], {strokeColor:'black'});
+var p = board.createElement('point',[(5/8)*Math.PI, function(){return mittel.Y();}],{name:'P', strokeColor:'black', face:'x' });
+var q = board.createElement('glider',[3.14, 3, wres] , {name:'Q', strokeColor:'black', size:1, fixed:true});
+var vec = board.createElement('line',[p,q], {straightFirst:false, straightLast:false, lastArrow:true, strokeColor:'green'});
+board.unsuspendUpdate();
+[[/jsxgraph]]
+

@@ -1,0 +1,533 @@
+JS Fiddel Bildkonstruktion:
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-3, 5, 8, -3], axis:true, showCopyright:false});
+var xaxis = board.createElement('functiongraph', [function() {return 1}], {strokeColor:'black', dash:2, name:'Optische Achse'});
+var axis = board.createElement('text', [6,0.7,'Optische Achse']);
+/* Linse */
+var l1 = board.createElement('functiongraph', [function(x) {
+  if(x>=1.913 && x<2.09)
+    return (-200)*(x-2)*(x-2)+2.5
+    }
+  ]
+);
+var l2 = board.createElement('functiongraph', [function(x) {
+  if(x>=1.913 && x<2.09)
+    return 200*(x-2)*(x-2)-0.5
+    }
+  ]
+);
+
+/* Mittelsenkrechte der Linse */
+var mit= board.createElement('line',[[2,0],[2,2]],{
+		strokeColor:'blue',
+    dash:2,
+    strokeWidth:1
+    }
+  );
+
+var lens = board.createElement('text', [1.68,-0.3,'Linse']);
+/* Brennpunkte */
+var f1 = board.createElement('point', [0,1],{
+    name:'f_1',
+    size:2,
+    color:'blue',
+    fixed:true
+  }
+);
+var f2 = board.createElement('point', [4,1],{
+    name:'f_2',
+    size:2,
+    color:'blue',
+    fixed:true
+  }
+);
+/* Gegenstand */
+var geg = board.createElement('line',[[1.3,1],[1.3,1.7]],
+  {  
+    name:'Gegenstand',
+    straightFirst:false,
+    straightLast:false,
+    lastArrow:true,
+    strokeColor:'blue',
+    fixed:true
+  }
+);
+
+/* Konstruktionsstrahlen */
+/* Zentralstrahl */
+var zenans = board.createElement('slider', [[4,4],[7,4],[-2,1,6]],{
+		name:'Zentralstrahl', 
+    snapWidth:0.5
+    }
+);
+var pzen1 = board.createElement('point',[1.3,1.7],{
+		fixed:true, 
+    visible:false
+    }
+);
+var pzen2 = board.createElement('point', [
+		function(){
+    		return zenans.Value();
+        },
+    1],{
+    visible:false
+    }
+);
+var zen = board.createElement('line',[pzen1,pzen2],{
+		strokeColor:'red',
+    name:'Zentralstrahl',
+    strokeWidth:1
+    }
+);
+
+/* Parallelstrahl */
+var parans = board.createElement('slider',[[4,3],[7,3],[-3,2,6]],{
+		snapWidth:0.5,
+    name:'Parallelstrahl'}
+);
+
+var ppar2 = board.createElement('point',[
+		function(){
+    		return parans.Value();
+        }, 
+    function(){
+    		return (1/6)*(parans.Value()-1.3)*(parans.Value()-1.3);
+    		}
+    ], {
+    visible:false
+    }
+);
+var par1 = board.createElement('line',[pzen1,ppar2],{
+		strokeWidth:1, 
+    strokeColor:'red', 
+    name:'Parallelstrahlhilfe', 
+    strokeWidth:1, 
+    straightFirst:false,
+    visible:false
+    }
+);
+
+var i1 = board.createElement('intersection',[par1,mit],{visible:false});
+
+var par = board.createElement('line',[pzen1,i1],{
+		strokeColor:'red',
+    strokeWidth:1,
+    name:'Parallelstrahl',
+   	straightFirst:false,
+    straightLast:false
+		}
+);
+
+/* Brennpunktstrahl */
+var brennans = board.createElement('slider',[[4,2],[7,2],[-2,3,6]],{
+		snapWidth:0.5,
+    name:'Brennpunktstrahl'
+		}
+);
+
+var brenn2 = board.createElement('glider',[
+		function(){
+      return brennans.Value();
+      },
+    1,xaxis
+    ],{
+		visible:false
+		}
+);
+
+var brennhilf = board.createElement('line', [pzen1,brenn2],{
+		visible:false
+    }
+);
+
+var brenn3 = board.createElement('intersection',[brennhilf,mit],{visible:false});
+
+var brenn = board.createElement('line', [brenn3,pzen1],{
+		straightFirst:true,
+    straightLast:true,
+    strokeColor:'red',
+    strokeWidth:1
+    }
+);
+
+
+board.unsuspendUpdate();
+
+
+Moodle-Eingabe: 
+
+Aufgabe 3.1 Bildkonstruktion
+
+[[jsxgraph input-ref-ans1="stateRef1" input-ref-ans2="stateRef2" input-ref-ans3="stateRef3"]]
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-3, 5, 11, -3], axis:false, showCopyright:false});
+var xaxis = board.createElement('functiongraph', [function() {return 1}], {strokeColor:'black', dash:2, name:'Optische Achse'});
+var axis = board.createElement('text', [6,0.7,'Optische Achse']);
+
+var f1 = board.jc.snippet('{#fx#}', true, 'x', true);
+var f = board.createElement('functiongraph', [f1,1.913,2.09]);
+var g1 = board.jc.snippet('{#gx#}', true, 'x', true);
+var g = board.createElement('functiongraph', [g1,1.913,2.09]);
+
+var mit= board.createElement('line',[[2,0],[2,2]],{
+	strokeColor:'blue',
+    dash:2,
+    strokeWidth:1
+    }
+);
+
+var lens = board.createElement('text', [1.68,-0.3,'Linse']);
+
+var f1 = board.createElement('point', [0,1],{
+    name:'f_1',
+    size:2,
+    color:'blue',
+    fixed:true
+    }
+);
+var f2 = board.createElement('point', [4,1],{
+    name:'f_2',
+    size:2,
+    color:'blue',
+    fixed:true
+    }
+);
+
+var geg = board.createElement('line',[[1.3,1],[1.3,1.7]],
+    {  
+    name:'Gegenstand',
+    straightFirst:false,
+    straightLast:false,
+    lastArrow:true,
+    strokeColor:'blue',
+    fixed:true
+    }
+);
+
+var zenans = board.createElement('slider', [[4,4],[7,4],[-2,1,6]],{
+		name:'Zentralstrahl', 
+    snapWidth:0.5
+    }
+);
+var pzen1 = board.createElement('point',[1.3,1.7],{
+		fixed:true, 
+    visible:false
+    }
+);
+var pzen2 = board.createElement('point', [
+	function(){
+    	return zenans.Value();
+        },
+    1
+	],{
+    visible:false
+    }
+);
+var zen = board.createElement('line',[pzen1,pzen2],{
+	strokeColor:'red',
+    name:'Zentralstrahl',
+    strokeWidth:1
+    }
+);
+
+var parans = board.createElement('slider',[[4,3],[7,3],[-3,2,6]],{
+	snapWidth:0.5,
+    name:'Parallelstrahl'
+	}
+);
+
+var ppar2 = board.createElement('point',[
+	function(){
+    	return parans.Value();
+		}, 
+    function(){
+    	return (1/6)*(parans.Value()-1.3)*(parans.Value()-1.3);
+    	}
+    ], {
+    visible:false
+    }
+);
+var par1 = board.createElement('line',[pzen1,ppar2],{
+	strokeWidth:1, 
+    strokeColor:'red', 
+    name:'Parallelstrahlhilfe', 
+    strokeWidth:1, 
+    straightFirst:false,
+    visible:false
+    }
+);
+
+var i1 = board.createElement('intersection',[par1,mit],{visible:false});
+
+var par = board.createElement('line',[pzen1,i1],{
+	strokeColor:'red',
+    strokeWidth:1,
+    name:'Parallelstrahl',
+   	straightFirst:false,
+    straightLast:false
+	}
+);
+
+var brennans = board.createElement('slider',[[4,2],[7,2],[-2,3,6]],{
+	snapWidth:0.5,
+    name:'Brennpunktstrahl'
+	}
+);
+
+var brenn2 = board.createElement('glider',[
+	function(){
+      return brennans.Value();
+      },
+    1,xaxis
+    ],{
+	visible:false
+	}
+);
+
+var brennhilf = board.createElement('line', [pzen1,brenn2],{
+	visible:false
+    }
+);
+
+var brenn3 = board.createElement('intersection',[brennhilf,mit],{visible:false});
+
+var brenn = board.createElement('line', [brenn3,pzen1],{
+	straightFirst:true,
+    straightLast:true,
+    strokeColor:'red',
+    strokeWidth:1
+    }
+);
+stack_jxg.bind_slider(stateRef1, zenans);
+stack_jxg.bind_slider(stateRef2, parans); 
+stack_jxg.bind_slider(stateRef3, brennans); 
+
+board.unsuspendUpdate();
+[[/jsxgraph]]
+
+Feedback zu Aufgabe 3.1:
+
+[[jsxgraph]]
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-3, 5, 11, -3], axis:false, showCopyright:false});
+var xaxis = board.createElement('functiongraph', [function() {return 1}], {strokeColor:'black', dash:2, name:'Optische Achse'});
+var axis = board.createElement('text', [6,0.7,'Optische Achse']);
+
+var f1 = board.jc.snippet('{#fx#}', true, 'x', true);
+var f = board.createElement('functiongraph', [f1,1.913,2.09]);
+var g1 = board.jc.snippet('{#gx#}', true, 'x', true);
+var g = board.createElement('functiongraph', [g1,1.913,2.09]);
+
+var mit= board.createElement('line',[[2,0],[2,2]],{
+		strokeColor:'blue',
+    dash:2,
+    strokeWidth:1
+    }
+  );
+
+var lens = board.createElement('text', [1.68,-0.3,'Linse']);
+
+var f1 = board.createElement('point', [0,1],{
+    name:'f_1',
+    size:2,
+    color:'blue',
+    fixed:true
+  }
+);
+var f2 = board.createElement('point', [4,1],{
+    name:'f_2',
+    size:2,
+    color:'blue',
+    fixed:true
+  }
+);
+
+var geg1 = board.createElement('point',[1.3,1.7],{visible:false});
+var geg = board.createElement('line',[[1.3,1],[1.3,1.7]],
+  {  
+    name:'Gegenstand',
+    straightFirst:false,
+    straightLast:false,
+    lastArrow:true,
+    strokeColor:'blue',
+    fixed:true
+  }
+);
+
+var pzen1 = board.createElement('point',[1.3,1.7],{
+		fixed:true, 
+    visible:false
+    }
+);
+var pzen2 = board.createElement('point', [2,1],{
+    visible:false
+    }
+);
+var zen = board.createElement('line',[pzen1,pzen2],{
+		strokeColor:'red',
+    name:'Zentralstrahl',
+    strokeWidth:1,
+    straightFirst:false,
+    straightLast:false
+    }
+);
+var zen2 = board.createElement('line',[pzen1,pzen2],{
+		strokeColor:'red',
+    name:'Zentralstrahl',
+    strokeWidth:1,
+    straightFirst:true,
+    straightLast:false,
+    dash:2
+    }
+);
+
+var ppar2 = board.createElement('point',[
+		4.5, 
+    function(){
+    		return (1/6)*(4.5-1.3)*(4.5-1.3);
+    		}
+    ], {
+    visible:false
+    }
+);
+var par1 = board.createElement('line',[pzen1,ppar2],{
+		strokeWidth:1, 
+    strokeColor:'red', 
+    name:'Parallelstrahlhilfe', 
+    strokeWidth:1, 
+    straightFirst:false,
+    visible:false
+    }
+);
+
+var i1 = board.createElement('intersection',[par1,mit],{visible:false});
+
+
+var par = board.createElement('line',[pzen1,i1],{
+		strokeColor:'red',
+    strokeWidth:1,
+    name:'Parallelstrahl',
+   	straightFirst:false,
+    straightLast:false
+		}
+);
+
+var par2 = board.createElement('line',[f2,i1],{
+		strokeColor:'red',
+    name:'Parallelstrahl',
+    strokeWidth:1,
+    straightFirst:true,
+    straightLast:true,
+    dash:2
+    }
+);
+
+var brenn2 = board.createElement('point',[0,1],{
+		visible:false
+		}
+);
+
+var brennhilf = board.createElement('line', [pzen1,brenn2],{
+		visible:false
+    }
+);
+
+var brenn3 = board.createElement('intersection',[brennhilf,mit],{visible:false});
+
+var brenn1 = board.createElement('line',[geg1,f1],{
+		strokeWidth:1,
+    straightFirst:false,
+    straightLast:false,
+    dash:2,
+    strokeColor:'red'
+		}
+);
+
+var brenn = board.createElement('line', [brenn3,geg1],{
+		straightFirst:false,
+    straightLast:false,
+    strokeColor:'red',
+    strokeWidth:1
+    }
+);
+
+var brenn2 = board.createElement('line',[[-2,2.08],[2,2.08]],{
+		strokeColor:'red',
+    name:'Parallelstrahl',
+    strokeWidth:1,
+    straightFirst:true,
+    straightLast:false,
+    dash:2
+    }
+);
+
+var bild1 = board.createElement('intersection', [brenn2,par2], {visible:false});
+var bild = board.createElement('line',[bild1, [function(){return bild1.X();}, 1]],{
+		strokeColor:'green',
+    strokeWidth:2,
+    straightFirst:false,
+    straightLast:false,
+    firstArrow:true,
+    name:'Bild'
+		}
+);
+
+
+board.unsuspendUpdate();
+[[/jsxgraph]]
+
+
+Sehvorgang:
+
+JSFiddle Eingabe
+
+var board = JXG.JSXGraph.initBoard('jxgbox', {boundingbox: [-2, 5, 6, -3], axis:false, showCopyright:false});
+var dataX = [0,0,-1,-1,5,5,0];
+var dataY = [0,-0.5,-0.5,4,4,0,0];
+var raum = board.createElement('curve', [dataX,dataY], {strokeColor:'black', strokeWidth:3});
+
+var spiegelX = [1,3];
+var spiegelY = [3.95,3.95];
+var spiegel = board.createElement('curve', [spiegelX,spiegelY], {strokeColor:'grey', strokeWidth:3});
+
+/*Lichtquelle*/
+var q1 = board.createElement('point', [-0.5,-0.2], {name:'LQ', size: 5, strokecolor:'black', fillColor:'yellow', fixed:true});
+var q2 = board.createElement('point', [2,3.9], {name:'q2', size:1,fixed:true ,visible:false});
+var strahl = board.createElement('line', [q1,q2], {strokeColor:'yellow', strokeWidth:4, straightFirst:false, straightLast:false});
+
+var lp1 = board.createElement('point',[0,0.2], {name:'lp1', size:2,visible:false});
+var lp2 = board.createElement('point',[5,0.2], {visible:false,name:'lp2', size:2});
+var l1 = board.createElement('line',[lp1,lp2], {name:'Eingabe',strokeColor:'blue', strokeWidth:2,straightFirst:false, straightLast:false, visible:false});
+var dude = board.createElement('glider', [2,0.2,l1],{name:'Person', size:6, face:'x', color:'black'});
+
+/* Winkel win1: q1,q2,dude */
+var win1 = board.createElement('angle',[q1,q2,dude], {visible:false,name:'ans1'});
+stack.jxg.bind_angle(stateRef, win1);
+board.unsuspendUpdate();
+
+
+
+Moodle Eingabe
+
+[[jsxgraph input-ref-ans7="stateRef"]]
+var board = JXG.JSXGraph.initBoard(divid, {boundingbox: [-2, 5, 6, -3], axis:false, showCopyright:false});
+var dataX = [0,0,-1,-1,5,5,0];
+var dataY = [0,-0.5,-0.5,4,4,0,0];
+var raum = board.createElement('curve', [dataX,dataY], {strokeColor:'black', strokeWidth:3});
+
+var spiegelX = [1,3];
+var spiegelY = [3.95,3.95];
+var spiegel = board.createElement('curve', [spiegelX,spiegelY], {strokeColor:'grey', strokeWidth:3});
+
+
+var q1 = board.createElement('point', [-0.5,-0.2], {name:'LQ', size: 5, strokecolor:'black', fillColor:'yellow', fixed:true});
+var q2 = board.createElement('point', [2,3.9], {name:'q2', size:1,fixed:true ,visible:false});
+var strahl = board.createElement('line', [q1,q2], {strokeColor:'yellow', strokeWidth:4, straightFirst:false, straightLast:false});
+
+var lp1 = board.createElement('point',[0,0.2], {name:'lp1', size:2,visible:false});
+var lp2 = board.createElement('point',[5,0.2], {visible:false,name:'lp2', size:2});
+var l1 = board.createElement('line',[lp1,lp2], {name:'Eingabe',strokeColor:'blue', strokeWidth:2,straightFirst:false, straightLast:false, visible:false});
+var dude = board.createElement('glider', [2,0.2,l1],{name:'Person', size:6, face:'x', color:'black'});
+
+var win1 = board.createElement('angle',[q1,q2,dude], {visible:false,name:'ans'});
+var ans = board.createElement('point',[function() {return win1.Value();}, function(){return win1.Value();}], {name:'ans', visible:false});
+stack.jxg.bind_angle(stateRef, ans);
+board.unsuspendUpdate();
+[[/jsxgraph]]

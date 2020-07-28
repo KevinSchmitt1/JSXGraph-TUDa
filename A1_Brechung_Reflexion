@@ -1,0 +1,135 @@
+/*Funktioniert!!!! Aufgabe mit 2 JSXGraph's*/
+<h5>Brechung und Reflexion an einer ebenen Fläche</h5>
+<p>In Grafik 1 ist ein einfallender Lichtstrahl auf eine ebene Fläche dargestellt. Das Medium, welches der einfallende Strahl zu Beginn durchläuft, ist Luft ($n_1\approx 1$). Bei dem Medium ab der roten Grenzfläche handelt es sich um ein Medium mit einem Brechungsindex $n_2>1$. </p>
+<p><strong>1)</strong> Gib an, unter welchem Winkel ein Teil des Strahls beim Auftreffen auf die Grenzfläche <u>reflektiert</u> wird. Die Angabe kann über das Verschieben des Schiebereglers gemacht werden.</p>
+[[jsxgraph input-ref-ans1="stateRef1"]] 
+var board = JXG.JSXGraph.initBoard(divid, {axis:false, boundingbox: [-10,7,10,-7], showCopyright: false}); 
+var waag1 = board.createElement('functiongraph', [function(x) {return 0}], {strokeColor:'red'} ); 
+var p = board.createElement ('point', [0,0], {name: 'O', size:1, visible:false}); 
+var p0 = board.createElement('point', [0,1], {name:'1', size:1, visible:false}); 
+var p00 = board.createElement('point', [0,-1], {name:'10', size:1, visible:false}); 
+var p000 = board.createElement('point', [2,0], {name: '100', size:1, visible:false}); 
+var lot = board.createElement('line', [p,p00], {strokeColor: 'blue', strokeWidth:2, dash:2}); p.setProperty({fixed:true}); 
+p0.setProperty({fixed:true}); 
+p00.setProperty({fixed:true});
+p000.setProperty({fixed:true}); 
+lot.setProperty({fixed:true}); 
+var A = board.createElement('point',[-5,3], {name:'Einfallender Strahl', size:0, face:'x',color:'blue'}); A.setProperty({fixed:true}); 
+var einf = board.createElement('line', [A,p], {straightFirst:true, straightLast:false}); 
+var alpha = board.createElement('angle', [p0,p,A], {radius: 2}); 
+var betazahl = board.createElement('functiongraph', [function(x) {return Math.sqrt(4-x*x)}], {visible:false}); 
+var B2 = board.create('point', [1,3,betazahl],{name:'Reflektierter Strahl', size:2, face: 'o', color:'red', visible:true}); 
+var B = board.createElement('point', [function(){return B2.X();},function(){return B2.Y();}], {name:'Reflektierter Strahl', size:0, face: 'o', color:'red', visible:true}); 
+var ausf = board.createElement('line',[B,p], {straightFirst:true, straightLast:false}); 
+var beta = board.createElement('angle', [p0,p,B2], {radius:2, visible:false}); 
+var s = board.create('slider',[[2,-2], [5,-2], [0, 45, 90]]); 
+beta.setAngle(function() {return -s.Value()* Math.PI / 180;}); 
+var beta2 = board.createElement('angle', [B2,p,p0], {radius:2}); 
+stack_jxg.bind_slider(stateRef1,s); 
+board.unsuspendUpdate(); 
+[[/jsxgraph]]
+<!-- Diese Information muss nicht angezeigt werden! <p>Der Winkel des einfallenden Strahls beträgt \(\alpha={@alpha1@}^\circ\).</p>-->
+<p style="margin-left:250px;"><strong>Grafik 1</strong></p>
+<p>[[input:ans1]]\(^\circ\) [[validation:ans1]]</p>
+<p><br></p>
+<p><strong>2)</strong> Gib an, unter welchem Winkel ein Teil des Strahls beim Auftreffen auf die Grenzfläche <u>gebrochen</u> werden kann. Die Angabe kann über das Verschieben des Schiebereglers gemacht werden.</p>
+[[jsxgraph input-ref-ans2="stateRef2"]] 
+var board = JXG.JSXGraph.initBoard(divid, {axis:false, boundingbox: [-10,7,10,-7], showCopyright: false}); 
+var waag1 = board.createElement('functiongraph', [function(x) {return 0}], {strokeColor:'red'} ); 
+var p = board.createElement ('point', [0,0], {name: 'O', size:1, visible:false}); 
+var p0 = board.createElement('point', [0,1], {name:'1', size:1, visible:false}); 
+var p00 = board.createElement('point', [0,-1], {name:'10', size:1, visible:false}); 
+var lot = board.createElement('line', [p,p00], {strokeColor: 'blue', strokeWidth:2, dash:2}); 
+p.setProperty({fixed:true}); 
+p0.setProperty({fixed:true}); 
+p00.setProperty({fixed:true}); 
+lot.setProperty({fixed:true}); 
+var A = board.createElement('point',[-5,3], {name:'Einfallender Strahl', size:0, face:'x',color:'blue'}); 
+A.setProperty({fixed:true}); 
+var einf = board.createElement('line', [A,p], {straightFirst:true, straightLast:false}); 
+var alpha = board.createElement('angle', [p0,p,A], {radius: 2}); 
+var betazahl = board.createElement('functiongraph', [function(x) {return -Math.sqrt(4-x*x)}], {visible:false}); 
+var B2 = board.create('point', [1,-3,betazahl],{name:'Gebrochener Strahl', size:2, face: 'o', color:'red', visible:false}); 
+var B = board.createElement('point', [function(){return B2.X();},function(){return B2.Y();}], {name:'Gebrochener Strahl', size:0, face: 'o', color:'red', visible:true}); 
+var ausf = board.createElement('line', [B,p], {straightFirst:true, straightLast:false}); 
+var beta = board.createElement('angle', [p00,p,B2], {radius:2}); var s = board.create('slider',[[2,2],[5,2], [0, 45, 90]]); 
+beta.setAngle(function() {return s.Value()* Math.PI / 180;}); 
+stack_jxg.bind_slider(stateRef2,s); 
+board.unsuspendUpdate(); 
+[[/jsxgraph]]
+<p style="margin-left:250px;"><strong>Grafik 2</strong></p>
+
+<p>[[input:ans2]]$^\circ$ [[validation:ans2]]<br></p>
+
+
+
+
+
+
+
+
+/*Test Aufgabe einzeln mit Variablen ohne "1"*/
+
+
+<p>Hier werden Linsenabbildungen mit JSXGraph getestet.</p>
+[[jsxgraph input-ref-ans1="stateRef"]] 
+var board = JXG.JSXGraph.initBoard(divid, {axis:false, boundingbox: [-10,7,10,-7], showCopyright: false}); 
+var waag1 = board.createElement('functiongraph', [function(x) {return 0}], {strokeColor:'red'} ); 
+var p = board.createElement ('point', [0,0], {name: 'O', size:1, visible:false}); 
+var p0 = board.createElement('point', [0,1], {name:'1', size:1, visible:false}); 
+var p00 = board.createElement('point', [0,-1], {name:'10', size:1, visible:false}); 
+var p000 = board.createElement('point', [2,0], {name: '100', size:1, visible:false}); 
+var lot = board.createElement('line', [p,p00], {strokeColor: 'blue', strokeWidth:2, dash:2}); 
+p.setProperty({fixed:true}); 
+p0.setProperty({fixed:true}); 
+p00.setProperty({fixed:true}); 
+p000.setProperty({fixed:true});
+lot.setProperty({fixed:true}); 
+var A = board.createElement('point',[-5,3], {name:'Einfallender Strahl', size:0, face:'x',color:'blue'}); 
+A.setProperty({fixed:true}); 
+var einf = board.createElement('line', [A,p], {straightFirst:true, straightLast:false});
+var alpha = board.createElement('angle', [p0,p,A], {radius: 2}); 
+var betazahl = board.createElement('functiongraph', [function(x) {return Math.sqrt(4-x*x)}], {visible:false}); 
+var B2 = board.create('point', [1,3,betazahl],{name:'Reflektierter Strahl', size:2, face: 'o', color:'red', visible:true}); 
+var B = board.createElement('point', [function(){return B2.X();},function(){return B2.Y();}], {name:'Reflektierter Strahl', size:0, face: 'o', color:'red', visible:true}); 
+var ausf = board.createElement('line', [B,p], {straightFirst:true, straightLast:false}); 
+var beta = board.createElement('angle', [p0,p,B2], {radius:2, visible:false}); 
+var s = board.create('slider',[[2,-2], [5,-2], [0, 45, 90]]); 
+beta.setAngle(function() {return -s.Value()* Math.PI / 180;});
+var beta2 = board.createElement('angle', [B2,p,p0], {radius:2}); 
+stack_jxg.bind_slider(stateRef,s); board.unsuspendUpdate(); 
+[[/jsxgraph]]
+<p>Der Winkel des einfallenden Strahls beträgt \(\alpha={@alpha1@}^\circ\).</p>
+<p>[[input:ans1]]\(^\circ\) [[validation:ans1]]</p>
+
+
+<p style="visibility: hidden;">[[input:ans2]] [[validation:ans2]]<br></p>
+
+
+
+
+
+/* JS Fiddle für Reflexion*/
+var board = JXG.JSXGraph.initBoard('jxgbox', {axis:false, boundingbox: [-10,7,10,-7], showCopyright: false}); 
+var waag11 = board.createElement('functiongraph', [function(x) {return 0}], {strokeColor:'red'} ); 
+var p1 = board.createElement ('point', [0,0], {name: 'O', size:1, visible:false}); 
+var p01 = board.createElement('point', [0,1], {name:'1', size:1, visible:false}); 
+var p001 = board.createElement('point', [0,-1], {name:'10', size:1, visible:false});
+var p0001 = board.createElement('point', [2,0], {name: '100', size:1, visible:false});
+var lot1 = board.createElement('line', [p1,p001], {strokeColor: 'blue', strokeWidth:2, dash:2});
+p1.setAttribute({fixed:true}); 
+p01.setAttribute({fixed:true}); p001.setProperty({fixed:true}); p0001.setProperty({fixed:true}); 
+lot1.setProperty({fixed:true}); 
+var A1 = board.createElement('point',[-5,3], {name:'Einfallender Strahl', size:0, face:'x',color:'blue'}); 
+A1.setProperty({fixed:true}); 
+var einf1 = board.createElement('line', [A1,p1], {straightFirst:true, straightLast:false}); 
+var alpha1 = board.createElement('angle', [p01,p1,A1], {radius: 2});
+var betazahl1 = board.createElement('functiongraph', [function(x) {return Math.sqrt(4-x*x)}], {visible:false});
+var B21 = board.create('point', [1,3,betazahl1],{name:'Reflektierter Strahl', size:2, face: 'o', color:'red', visible:true});
+var B1 = board.createElement('point', [function(){return B21.X();},function(){return B21.Y();}], {name:'Reflektierter Strahl', size:0, face: 'o', color:'red', visible:true}); 
+var ausf1 = board.createElement('line', [B1,p1], {straightFirst:true, straightLast:false}); 
+var beta1 = board.createElement('angle', [p01,p1,B21], {radius:2, visible:false}); 
+
+var s1 = board.create('slider',[[2,-2], [5,-2], [0, 45, 90]]);
+beta1.setAngle(function() {return -s1.Value()* Math.PI / 180;});
+var beta21 = board.createElement('angle', [B21,p1,p01], {radius:2});
