@@ -1,5 +1,3 @@
-# helloWorld
-Test repository
-This is my first repository and will be a test
-
-I made a change to this file for making it superior to the prior version. #nice
+# JSXGraph
+In this repository, all my JSXgraph files are uploaded.
+Some of the files are jsfiddle codes, some the direct codes for implementation in moodle.
