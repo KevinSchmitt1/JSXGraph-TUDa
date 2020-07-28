@@ -105,7 +105,7 @@ stack_jxg.bind_slider(stateRef,s); board.unsuspendUpdate();
 
 <p style="visibility: hidden;">[[input:ans2]] [[validation:ans2]]<br></p>
 
-
+!!An dieser Stelle stimmt etwas nicht!!!
 
 
 
