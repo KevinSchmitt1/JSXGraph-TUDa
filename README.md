@@ -12,7 +12,7 @@ The full guide for including a JSXGraph-task into a moodle-STACK-question is exp
 
 There are two ways to implement the JavaScript based tool: 
 
-1. Via online usage: Include the JavaScript file of JSXGraph in the HTML-code of the tast file.
+1. Via online usage: Include the JavaScript file of JSXGraph in the HTML-code of the task text.
 
 2. Via local copy: Download and include the JavaScript file of JSXGraph directly from a local repository (f.e. on the running moodle-server).
 
