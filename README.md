@@ -26,3 +26,7 @@ I recommend using jsfiddle.net for testing and coding a JSXGraph task. There are
 
 There are many examples for JSXGraph codes on the JSXGraph-Wiki page: https://jsxgraph.uni-bayreuth.de/wiki/index.php/Main_Page 
 Furthermore you can look up specific functions of JSXGraph on: https://jsxgraph.uni-bayreuth.de/docs/index.html
+
+The Ruhr-University in Bochum also created a tutorial for the usage of JSXGraph with examples and videos. You can get access via:
+
+https://moodle.ruhr-uni-bochum.de/m/mod/wiki/view.php?pageid=9984
